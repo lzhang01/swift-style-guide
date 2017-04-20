@@ -1,14 +1,14 @@
 ![Intrepid Pursuits](intrepid-logo.png)
-#Swift Style Guide
+# Swift Style Guide
 
 This is the documentation of Intrepid's best practices and style regarding the Swift language.
 
-##Making / Requesting Changes
+## Making / Requesting Changes
 
 Feedback and change requests are encouraged!  The current maintainers of this style guide are the developers of [Intrepid](http://www.intrepid.io).  If you have an issue with any of the existing rules and would like to see something changed, please see the [contribution guidelines](CONTRIBUTING.md),
 then open a pull request. :zap:
 
-##Goals
+## Goals
 
 Attempt to encourage patterns that accomplish the following goals:
 
@@ -16,7 +16,7 @@ Attempt to encourage patterns that accomplish the following goals:
  2. Increased clarity of intent
  3. Aesthetic consistency
 
-##Table Of Contents
+## Table Of Contents
 
 * [General](#general)
 	* [Swift-Clean](#swift-clean)
@@ -54,13 +54,13 @@ Attempt to encourage patterns that accomplish the following goals:
 	* [Referring to `self`](#referring-to-self)
 	* [Should I use `unowned` or `weak`](#should-i-use-unowned-or-weak)
 
-##General
+## General
 
-###Swift-Clean
+### Swift-Clean
 
 We use the Swift-Clean app in order to ensure code quality and consistency across our projects. The program is available [here](http://swiftcleanapp.com) and our config is available in [here](SwiftStyleSettings.plist). A license for Intrepid employees is available if needed.
 
-###Whitespace
+### Whitespace
 
  * Indent using 4 spaces. Never indent with tabs. Be sure to set this preference in Xcode.
  * End files with a newline.
@@ -68,38 +68,38 @@ We use the Swift-Clean app in order to ensure code quality and consistency acros
  * Don’t leave trailing whitespace.
    * Not even leading indentation on blank lines.
 
-###Code Grouping
+### Code Grouping
 
 Code should strive to be separated into meaningful chunks of functionality.  These larger chunks should be indicated by using the `// MARK: ` keyword.
 
 When grouping protocol conformance, always use the name of the protocol and only the name of the protocol
 
-#####Like this:
+##### Like this:
 ```Swift
 // MARK: UITableViewDelegate
 ```
 
-######Not this:
+###### Not this:
 ```Swift
 // MARK: UITableViewDelegate Methods
 ```
 
-######-- or --
+###### -- or --
 
 ```Swift
 // MARK: Table View Delegate
 ```
 
-###Guard Statements
+### Guard Statements
 
 Guard statements are meant to be used as early return logic only. They should not be used for regular control flow in place of a traditional control flow statement.
 
-#####Single assignment `guard`
+##### Single assignment `guard`
 ```Swift
 guard let value = someMethodThatReturnsOptional() else { return nil }
 ```
 
-#####Multi assignment `guard`
+##### Multi assignment `guard`
 ```Swift
 guard
     let strongSelf = self,
@@ -107,29 +107,29 @@ guard
     else { return }
 ```
 
-#####Complex Returns `guard`
+##### Complex Returns `guard`
 This is any situation where you'd want to do more work in the guard than just return or throw.
 ```Swift
-guard let value = someMethodThatReturnsOptional() else { 
+guard let value = someMethodThatReturnsOptional() else {
     doSomeNecessaryThing()
-    return nil 
+    return nil
 }
 ```
 
-#####Complex Returns (Multi-assignment) `guard`
+##### Complex Returns (Multi-assignment) `guard`
 ```Swift
 guard
     let strongSelf = self,
     let foo = strongSelf.editing
     else {
         doSomeNecessaryThing()
-        throw Error.FooUnknown 
+        throw Error.FooUnknown
     }
 ```
 
-##Classes, Structs, and Protocols
+## Classes, Structs, and Protocols
 
-###Structs vs Classes
+### Structs vs Classes
 
 Unless you require functionality that can only be provided by a class (like identity or deinitializers), implement a struct instead.
 
@@ -187,7 +187,7 @@ struct Car: Vehicle {
 
 **_Rationale:_** Value types are simpler, easier to reason about, and behave as expected with the `let` keyword.
 
-####Protocol Naming
+#### Protocol Naming
 
 Protocols that describe _what something is_ should be named as nouns.
 ```Swift
@@ -198,9 +198,9 @@ Protocols that describe the _capability_ of something should be named using the 
 Equatable, Reporting, Sustainable, etc.
 ```
 
-##Types
+## Types
 
-###Type Specifications
+### Type Specifications
 
 When specifying the type of an identifier, always put the colon immediately
 after the identifier, followed by a space and then the type name.
@@ -215,7 +215,7 @@ func makeCoffee(type: CoffeeType) -> Coffee { ... }
 func swap<T: Swappable>(inout a: T, inout b: T) { ... }
 ```
 
-###Let vs Var
+### Let vs Var
 
 Prefer `let`-bindings over `var`-bindings wherever possible
 
@@ -229,11 +229,11 @@ It becomes easier to reason about code. Had you used `var` while still making th
 
 Accordingly, whenever you see a `var` identifier being used, assume that it will change and ask yourself why.
 
-###Parameterized Types
+### Parameterized Types
 
 Methods of parameterized types can omit type parameters on the receiving type when they’re identical to the receiver’s.
 
-#####Like this:
+##### Like this:
 ```swift
 struct Composite<T> {
 	…
@@ -243,7 +243,7 @@ struct Composite<T> {
 }
 ```
 
-######Not this:
+###### Not this:
 ```swift
 struct Composite<T> {
 	…
@@ -255,17 +255,17 @@ struct Composite<T> {
 
 **_Rationale:_** Omitting redundant type parameters clarifies the intent, and makes it obvious by contrast when the returned type takes different type parameters.
 
-###Operator Definitions
+### Operator Definitions
 
 Use whitespace around operators when defining them.
 
-#####Like this:
+##### Like this:
 ```swift
 func <| (lhs: Int, rhs: Int) -> Int
 func <|< <A>(lhs: A, rhs: A) -> A
 ```
 
-######Not this:
+###### Not this:
 ```swift
 func <|(lhs: Int, rhs: Int) -> Int
 func <|<<A>(lhs: A, rhs: A) -> A
@@ -273,23 +273,23 @@ func <|<<A>(lhs: A, rhs: A) -> A
 
 **_Rationale:_** Operators consist of punctuation characters, which can make them difficult to read when immediately followed by the punctuation for a type or value parameter list. Adding whitespace separates the two more clearly.
 
-###Dictionaries
+### Dictionaries
 
 When specifying the type of a dictionary, always leave spaces on either side of the colon.
 
-#####Like this:
+##### Like this:
 ```swift
 let capitals: [Country : City] = [Sweden : Stockholm]
 ```
 
-######Not this:
+###### Not this:
 ```swift
 let capitals: [Country: City] = [ Sweden: Stockholm ]
 ```
 
 For literal dictionaries that exceed a single line, newline syntax is preferable:
 
-#####Like this:
+##### Like this:
 ```swift
 let capitals: [Country : City] = [
     Sweden : Stockholm,
@@ -297,28 +297,28 @@ let capitals: [Country : City] = [
 ]
 ```
 
-######Not this:
+###### Not this:
 ```swift
 let capitals: [Country : City] = [Sweden : Stockholm, USA : WashingtonDC]
 ```
 
-###Type Inference
+### Type Inference
 
 Unless it impairs readability or understanding, it preferable to rely on Swift's type inference where appropriate.
 
-#####Like this:
+##### Like this:
 ```Swift
 let hello = "Hello"
 ```
 
-######Not this:
+###### Not this:
 ```Swift
 let hello: String = "Hello"
 ```
 
 This does not mean one should avoid those situations where an explicit type is required.
 
-#####Like this:
+##### Like this:
 ```Swift
 let padding: CGFloat = 20
 var hello: String? = "Hello"
@@ -327,11 +327,11 @@ var hello: String? = "Hello"
 **_Rationale:_** The type specifier is saying something about the _identifier_ so
 it should be positioned with it.
 
-###Enums
+### Enums
 
 Enum cases should be defined in `camelCase` with leading lowercase letters. This is counter to Swift 2.x where uppercase was preferred.
 
-#####Like This
+##### Like This
 
 ```Swift
 enum Directions {
@@ -342,7 +342,7 @@ enum Directions {
 }
 ```
 
-######Not This
+###### Not This
 
 ```Swift
 enum Directions {
@@ -355,9 +355,9 @@ enum Directions {
 
 **_Rationale:_** Uppercase syntax should be reserved for typed declarations only.
 
-##Optionals
+## Optionals
 
-###Force-Unwrapping of Optionals
+### Force-Unwrapping of Optionals
 
 If you have an identifier `foo` of type `FooType?` or `FooType!`, don't force-unwrap it to get to the underlying value (`foo!`) if possible.
 
@@ -373,7 +373,7 @@ if let foo = foo {
 
 **_Rationale:_** Explicit `if let`-binding of optionals results in safer code. Force unwrapping is more prone to lead to runtime crashes.
 
-###Optional Chaining
+### Optional Chaining
 
 Optional chaining in Swift is similar to messaging `nil` in Objective-C, but in a way that works for any type, and that can be checked for success or failure.
 
@@ -387,7 +387,7 @@ return cell
 
 **_Rationale:_** The use of optional binding here is overkill.
 
-###Implicitly Unwrapped Optionals
+### Implicitly Unwrapped Optionals
 
 Implicitly unwrapped optionals have the potential to cause runtime crashes and should be used carefully. If a variable has the possibility of being `nil`, you should always declare it as an optional `?`.
 
@@ -401,7 +401,7 @@ lazy var customObject: CustomObject = CustomObject(dataSource: self)
 
 **_Rationale:_** Explicit optionals result in safer code. Implicitly unwrapped optionals have the potential of crashing at runtime.
 
-##Access Control
+## Access Control
 
 Top-level functions, types, and variables should always have explicit access control specifiers:
 
@@ -421,24 +421,24 @@ internal struct TheFez {
 
 When dealing with functionality that relies on ObjC systems such as the target-selector pattern, one should still strive for appropriate access control.  This can be achieved through the `@objC` attribute.  
 
-#####Like this:
+##### Like this:
 ```Swift
 @objc private func handleTap(tap: UITapGestureRecognizer)
 ```
 
-######Not this:
+###### Not this:
 ```Swift
 public func handleTap(tap: UITapGestureRecognizer)
 ```
 
 **_Rationale:_** It's rarely appropriate for top-level definitions to be specifically `internal`, and being explicit ensures that careful thought goes into that decision. Within a definition, reusing the same access control specifier is just duplicative, and the default is usually reasonable.
 
-###Getters
+### Getters
 
 When possible, omit the `get` keyword on read-only computed properties and
 read-only subscripts.
 
-#####Like this:
+##### Like this:
 ```swift
 var myGreatProperty: Int {
 	return 4
@@ -449,7 +449,7 @@ subscript(index: Int) -> T {
 }
 ```
 
-######Not this:
+###### Not this:
 ```swift
 var myGreatProperty: Int {
 	get {
@@ -466,7 +466,7 @@ subscript(index: Int) -> T {
 
 **_Rationale:_** The intent and meaning of the first version is clear, and results in less code.
 
-###Referring to `self`
+### Referring to `self`
 
 When accessing properties or methods on `self`, leave the reference to `self` implicit by default:
 
@@ -498,28 +498,28 @@ extension History {
 
 **_Rationale:_** This makes the capturing semantics of `self` stand out more in closures, and avoids verbosity elsewhere.
 
-###Make classes `final` by default
+### Make classes `final` by default
 
 Classes should start as `final`, and only be changed to allow subclassing if a valid need for inheritance has been identified. Even in that case, as many definitions as possible _within_ the class should be `final` as well, following the same rules.
 
 **_Rationale:_** Composition is usually preferable to inheritance, and opting _in_ to inheritance hopefully means that more thought will be put into the decision.
 
-##Functions
+## Functions
 
 Specifications around the preferable syntax to use when declaring, and using functions.
 
-###Declarations
+### Declarations
 
 With Swift 3, the way that parameter names are treated has changed. Now the first parameter will always be shown unless explicitly requested not to. This means that functions declarations should take that into account and no longer need to use long, descriptive names.
 
-#####Like this:
+##### Like this:
 ```Swift
 func move(view: UIView, toFrame: CGRect)
 
 func preferredFont(forTextStyle: String) -> UIFont
 ```
 
-######Not this:
+###### Not this:
 ```Swift
 func moveView(view: UIView, toFrame frame: CGRect)
 
@@ -533,23 +533,23 @@ func moveView(_ view: UIView, toFrame: CGRect)
 
 **_Rationale:_** Function declarations should flow as a sentence in order to make them easier to understand and reason about.
 
-###Naming
+### Naming
 
 Avoid needless repetition when naming functions. This is following the style of the core API changes in Swift 3.
 
-#####Like this:
+##### Like this:
 ```Swift
 let blue = UIColor.blue
 let newText = oldText.append(attributedString)
 ```
 
-######Not this:
+###### Not this:
 ```Swift
 let blue = UIColor.blueColor()
 let newText = oldText.appendAttributedString(attributedString)
 ```
 
-###Calling
+### Calling
 
 ... some specifications on calling functions
 
@@ -558,13 +558,13 @@ let newText = oldText.appendAttributedString(attributedString)
 - Use trailing closure syntax for simple functions
 - Avoid trailing closures at the end of functions with many arguments.  (3+)
 
-##Closures
+## Closures
 
-###Closure Specifications
+### Closure Specifications
 
 It is preferable to associate a closure's type from the left hand side when possible.
 
-#####Like this:
+##### Like this:
  ```Swift
  let layout: (UIView, UIView) -> Void = { (view1, view2) in
    view1.center = view2.center
@@ -572,7 +572,7 @@ It is preferable to associate a closure's type from the left hand side when poss
  }
  ```
 
-######Not this:
+###### Not this:
 ```Swift
 let layout = { (view1: UIView, view2: UIView) in
   view1.center = view2.center
@@ -580,18 +580,18 @@ let layout = { (view1: UIView, view2: UIView) in
 }
 ```
 
-###Void arguments/return types
+### Void arguments/return types
 
 It is preferable to not use `Void` in closure arguments or return types, omitting parentheses where possible.
 
-#####Like this:
+##### Like this:
 ```Swift
 let noArgNoReturnClosure = { doSomething() } // no arguments or return types, omit both
 let noArgClosure = { () -> Int in return getValue() } // void argument, use '()'
 let noReturnClosure = { (arg) in doSomething(with: arg) } // void return type, omit return type
 ```
 
-######Not this:
+###### Not this:
 ```Swift
 let noArgNoReturnClosure = { (Void) -> Void in doSomething() } // don't do this
 let noArgClosure = { (Void) -> Int in return getValue() } // don't do this
@@ -600,14 +600,14 @@ let noReturnClosure = { (arg) -> Void in doSomething(with: arg) } // don't do th
 
 However, when defining closure type, `Void` is preferred to `()`
 
-#####Like this:
+##### Like this:
 ```Swift
 typealias NoArgNoReturnClosure = Void -> Void
 typealias NoArgClosure = Void -> Int
 typealias NoReturnClosure = Int -> Void
 ```
 
-######Not this:
+###### Not this:
 ```Swift
 typealias NoArgNoReturnClosure = () -> ()
 typealias NoArgClosure = () -> Int
@@ -616,11 +616,11 @@ typealias NoReturnClosure = Int -> ()
 
 
 
-###Shorthand
+### Shorthand
 
 Shorthand argument syntax should only be used in closures that can be understood in a few lines.  In other situations, declaring a variable that helps identify the underlying value is preferred.
 
-#####Like this:
+##### Like this:
 ```Swift
 doSomethingWithCompletion() { result in
   // do things with result
@@ -630,7 +630,7 @@ doSomethingWithCompletion() { result in
 }
 ```
 
-######Not this:
+###### Not this:
 ```Swift
 doSomethingWithCompletion() {
   // do things with result
@@ -645,29 +645,29 @@ Using shorthand syntax is preferable in situations where the arguments are well 
 ```Swift
 let sortedNames = names.sort { $0 < $1 }
 ```
-###Trailing Closures
+### Trailing Closures
 
 Use trailing closure syntax only if there's a single closure expression parameter at the end of the argument list.
 
-#####Like this:
+##### Like this:
 ```swift
 UIView.animateWithDuration(1.0) {
   self.myView.alpha = 0
 }
 ```
 
-######Not this:
+###### Not this:
 ```swift
 UIView.animateWithDuration(1.0, animations: {
   self.myView.alpha = 0
 })
 ```
 
-###Multiple Closures
+### Multiple Closures
 
 When a function takes multiple closures as arguments it can be difficult to read. To keep it clean, use a new line for each argument and avoid trailing closures. If you're not going to use the variable from the closure input, name it with an underscore `_`.
 
-#####Like this:
+##### Like this:
 ```swift
 UIView.animateWithDuration(
     SomeTimeValue,
@@ -679,7 +679,7 @@ UIView.animateWithDuration(
     }
 )
 ```
-######Not this:
+###### Not this:
 ```swift
 UIView.animateWithDuration(SomeTimeValue, animations: {
     // Do stuff
@@ -689,11 +689,11 @@ UIView.animateWithDuration(SomeTimeValue, animations: {
 ```
 (Even though the default spacing and syntax from Xcode might do it this way)
 
-###Referring to `self`
+### Referring to `self`
 
 When referring to `self` within a closure you must be careful to avoid creating a [strong reference cycle](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/AutomaticReferenceCounting.html#//apple_ref/doc/uid/TP40014097-CH20-ID56). Always use a capture list, such as `[weak self]` when it's necessary to use functions or properties outside of the closure.
 
-#####Like this:
+##### Like this:
 ```swift
 lazy var someClosure: () -> String? = { [weak self] in
     guard let safeSelf = self else { return nil }
@@ -701,7 +701,7 @@ lazy var someClosure: () -> String? = { [weak self] in
 }
 ```
 
-#####Not this:
+##### Not this:
 ```swift
 viewModel.someClosure { self in
     self.outsideFunction()
@@ -710,6 +710,6 @@ viewModel.someClosure { self in
 
 **_Rationale_** If a closure holds onto a strong reference to a property being used within it there will be a strong reference cycle causing a memory leak.
 
-###Should I use `unowned` or `weak`?
+### Should I use `unowned` or `weak`?
 
 * `weak` is always preferable as it creates an optional so that crashes are prevented. `unowned` is only useful when you are guaranteed that the value will never be `nil` within the closure. Since this creates the possibility for unsafe access it should be avoided.
