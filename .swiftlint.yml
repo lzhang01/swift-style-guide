@@ -43,6 +43,7 @@ reporter: "xcode" # reporter type (xcode, json, csv, checkstyle, junit)
 #   - mark
 #   - missing_docs
 #   - nesting
+#   - notification_center_detachment
 #   - object_literal
 #   - opening_brace
 #   - operator_usage_whitespace
@@ -87,20 +88,23 @@ disabled_rules:
   - explicit_type_interface
   - file_header
   - for_where
-  - function_body_length
-  - function_parameter_count
-  - large_tuple
-  - line_length
   - nimble_operator
-  - notification_center_detachment
   - shorthand_operator
   - switch_case_on_newline
   - todo
   - void_return
 
+  # These next four rules are recommended to be enabled on a project-by-project
+  # basis with specific configurations that fit the project style.
+  - function_body_length
+  - function_parameter_count
+  - large_tuple
+  - line_length
+
 ## Rule Configuration
 
-apply_to_dictionaries: false
+colon:
+  apply_to_dictionaries: false
 file_length:
   warning: 750
   error: 1500

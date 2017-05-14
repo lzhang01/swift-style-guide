@@ -58,7 +58,7 @@ Attempt to encourage patterns that accomplish the following goals:
 
 ### SwiftLint
 
-We use the [SwiftLint](https://github.com/realm/SwiftLint) library from Realm to enforce code style practices across our projects. There is a `swiftlint.yml` file within this repo which is the current general standard for Intrepid projects. If necessary the rules can be changed on a project-by-project basis, but this should be avoided if possible.
+We use the [SwiftLint](https://github.com/realm/SwiftLint) library from Realm to enforce code style practices across our projects. There is a `swiftlint.yml` file [available here](.swiftlint.yml) which is the current general standard for Intrepid projects. If necessary the rules can be changed on a project-by-project basis, but this should be avoided if possible.
 
 ### Whitespace
 
