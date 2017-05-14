@@ -19,7 +19,7 @@ Attempt to encourage patterns that accomplish the following goals:
 ## Table Of Contents
 
 * [General](#general)
-	* [Swift-Clean](#swift-clean)
+	* [SwiftLint](#swiftlint)
 	* [Whitespace](#whitespace)
 	* [Code Grouping](#code-grouping)
 	* [Guard Statements](#guard-statements)
@@ -56,9 +56,9 @@ Attempt to encourage patterns that accomplish the following goals:
 
 ## General
 
-### Swift-Clean
+### SwiftLint
 
-We use the Swift-Clean app in order to ensure code quality and consistency across our projects. The program is available [here](http://swiftcleanapp.com) and our config is available in [here](SwiftStyleSettings.plist). A license for Intrepid employees is available if needed.
+We use the [SwiftLint](https://github.com/realm/SwiftLint) library from Realm to enforce code style practices across our projects. There is a `swiftlint.yml` file within this repo which is the current general standard for Intrepid projects. If necessary the rules can be changed on a project-by-project basis, but this should be avoided if possible.
 
 ### Whitespace
 
@@ -173,7 +173,7 @@ protocol Vehicle {
 extension Vehicle {
     func maximumTotalTirePressure(pressurePerWheel: Float) -> Float {
         return pressurePerWheel * Float(numberOfWheels)
-    }  
+    }
 }
 
 struct Bicycle: Vehicle {
@@ -419,7 +419,7 @@ internal struct TheFez {
 }
 ```
 
-When dealing with functionality that relies on ObjC systems such as the target-selector pattern, one should still strive for appropriate access control.  This can be achieved through the `@objC` attribute.  
+When dealing with functionality that relies on ObjC systems such as the target-selector pattern, one should still strive for appropriate access control.  This can be achieved through the `@objC` attribute.
 
 ##### Like this:
 ```Swift
