@@ -58,7 +58,7 @@ Attempt to encourage patterns that accomplish the following goals:
 
 ### SwiftLint
 
-We use the [SwiftLint](https://github.com/realm/SwiftLint) library from Realm to enforce code style practices across our projects. There is a `swiftlint.yml` file [available here](.swiftlint.yml) which is the current general standard for Intrepid projects. If necessary the rules can be changed on a project-by-project basis, but this should be avoided if possible.
+We use the [SwiftLint](https://github.com/realm/SwiftLint) library from Realm to enforce code style practices across our projects. This will be enabled by default for projects using Jenkins Pipelines. There is a `swiftlint.yml` file [available here](.swiftlint.yml) which is the current general standard for Intrepid projects (used by default for Jenkins). If necessary the rules can be changed on a project-by-project basis, but this should be avoided if possible. To use your own SwiftLint file on a project be sure to include it within the project's directory.
 
 ### Whitespace
 
