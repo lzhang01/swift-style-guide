@@ -1,7 +1,11 @@
+# Don't add any files/directories to the 'include:' section. Everything not
+# listed under 'excluded:' should be linted.
+# included:
+#   - Nothing
+
 excluded: # paths to ignore during linting. Takes precedence over `included`.
   - Pods
   - Carthage
-  - UnitTests
 
 reporter: "xcode" # reporter type (xcode, json, csv, checkstyle, junit)
 
