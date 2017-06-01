@@ -492,15 +492,15 @@ Only include the explicit keyword when required by the language—for example, i
 
 ```swift
 extension History {
-	init(events: [Event]) {
-		self.events = events
-	}
+    init(events: [Event]) {
+        self.events = events
+    }
 
-	var whenVictorious: () -> () {
-		return {
-			self.rewrite()
-		}
-	}
+    var whenVictorious: () -> Void {
+        return {
+            self.rewrite()
+        }
+    }
 }
 ```
 
@@ -590,7 +590,7 @@ let layout = { (view1: UIView, view2: UIView) in
 
 ### Void arguments/return types
 
-It is preferable to not use `Void` in closure arguments or return types, omitting parentheses where possible.
+It is preferable to omit `Void` in closure arguments and return types.
 
 ##### Like this:
 ```Swift
@@ -601,28 +601,27 @@ let noReturnClosure = { (arg) in doSomething(with: arg) } // void return type, o
 
 ###### Not this:
 ```Swift
-let noArgNoReturnClosure = { (Void) -> Void in doSomething() } // don't do this
-let noArgClosure = { (Void) -> Int in return getValue() } // don't do this
-let noReturnClosure = { (arg) -> Void in doSomething(with: arg) } // don't do this
+let noArgNoReturnClosure = { (Void) -> Void in doSomething() }
+let noArgClosure = { (Void) -> Int in return getValue() }
+let noReturnClosure = { (arg) -> Void in doSomething(with: arg) }
 ```
+**_Rationale:_** A `Void` return type can be inferred, thus it is unnecessarily verbose to include it
 
-However, when defining closure type, `Void` is preferred to `()`
+When defining closure type, prefer `()` for parameters, and `Void` for return types.
 
 ##### Like this:
 ```Swift
-typealias NoArgNoReturnClosure = Void -> Void
-typealias NoArgClosure = Void -> Int
+typealias NoArgNoReturnClosure = () -> Void
+typealias NoArgClosure = () -> Int
 typealias NoReturnClosure = Int -> Void
 ```
 
 ###### Not this:
 ```Swift
-typealias NoArgNoReturnClosure = () -> ()
-typealias NoArgClosure = () -> Int
+typealias NoArgNoReturnClosure = (Void) -> ()
+typealias NoArgClosure = (Void) -> Int
 typealias NoReturnClosure = Int -> ()
 ```
-
-
 
 ### Shorthand
 
