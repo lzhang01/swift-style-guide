@@ -80,7 +80,7 @@ Adding the dash, `//MARK: - section title`, not only inserts the `section title`
 
 ![marked with dash section](mark-with-dash.png)
 
-When grouping protocol conformance, always use the name of the protocol and only the name of the protocol
+When grouping protocol conformance, always use the name of the protocol. Avoid extra specifiers (e.g. `UITableViewDelegate Methods`) unless absolutely necessary.
 
 ##### Like this:
 ```Swift
@@ -89,14 +89,10 @@ When grouping protocol conformance, always use the name of the protocol and only
 
 ###### Not this:
 ```Swift
-// MARK: - UITableViewDelegate Methods
-```
-
-###### -- or --
-
-```Swift
 // MARK: - Table View Delegate
 ```
+
+**_Rationale:_** Using the name of the protocol allows easy access to its functions through `cmd + click` in Xcode. The addtion of other specifiers doesn't add clarity unless there are multiple groupings for the same protocol.
 
 ### Guard Statements
 
