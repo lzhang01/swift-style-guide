@@ -590,7 +590,7 @@ let layout = { (view1: UIView, view2: UIView) in
 
 ### Void arguments/return types
 
-It is preferable to omit `Void` in closure arguments and return types.
+It is preferable to omit `Void` in closure arguments and return types whenever possible.
 
 ##### Like this:
 ```Swift
@@ -622,6 +622,8 @@ typealias NoArgNoReturnClosure = (Void) -> ()
 typealias NoArgClosure = (Void) -> Int
 typealias NoReturnClosure = Int -> ()
 ```
+
+**_Rationale:_** `Void` is more readable than `()`, especially when wrapped in more parentheses. `() -> Void` is also the standard in Apple APIs and documentation.
 
 ### Shorthand
 
