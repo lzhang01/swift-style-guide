@@ -283,11 +283,11 @@ func <|<<A>(lhs: A, rhs: A) -> A
 
 ### Dictionaries
 
-When specifying the type of a dictionary, always leave spaces on either side of the colon.
+When specifying the type of a dictionary, always leave one space after the colon, and no extra spaces around the brackets.
 
 ##### Like this:
 ```swift
-let capitals: [Country : City] = [Sweden : Stockholm]
+let capitals: [Country: City] = [Sweden: Stockholm]
 ```
 
 ###### Not this:
@@ -299,15 +299,15 @@ For literal dictionaries that exceed a single line, newline syntax is preferable
 
 ##### Like this:
 ```swift
-let capitals: [Country : City] = [
-    Sweden : Stockholm,
-    USA : WashingtonDC
+let capitals: [Country: City] = [
+    Sweden: Stockholm,
+    USA: WashingtonDC
 ]
 ```
 
 ###### Not this:
 ```swift
-let capitals: [Country : City] = [Sweden : Stockholm, USA : WashingtonDC]
+let capitals: [Country: City] = [Sweden: Stockholm, USA: WashingtonDC]
 ```
 
 ### Type Inference
