@@ -138,7 +138,7 @@ disabled_rules:
   - void_return
   - yoda_condition
 
-  # These next four rules are recommended to be enabled on a project-by-project
+  # These next rules are recommended to be enabled on a project-by-project
   # basis with specific configurations that fit the project style.
   - function_body_length
   - function_parameter_count
