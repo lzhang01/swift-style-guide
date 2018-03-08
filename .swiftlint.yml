@@ -40,7 +40,6 @@ reporter: "xcode" # reporter type (xcode, json, csv, checkstyle, junit)
 #   - force_unwrapping
 #   - generic_type_name
 #   - is_disjoint
-#   - identifier
 #   - identifier_name
 #   - implicit_getter
 #   - implicitly_unwrapped_optional
@@ -50,7 +49,6 @@ reporter: "xcode" # reporter type (xcode, json, csv, checkstyle, junit)
 #   - legacy_constructor
 #   - legacy_nsgeometry_functions
 #   - mark
-#   - missing_docs
 #   - nesting
 #   - notification_center_detachment
 #   - object_literal
@@ -79,7 +77,6 @@ reporter: "xcode" # reporter type (xcode, json, csv, checkstyle, junit)
 #   - unused_closure_parameter
 #   - unused_enumerated
 #   - unused_optional_binding
-#   - valid_docs
 #   - valid_ibinspectable
 #   - vertical_parameter_alignment
 #   - vertical_whitespace
