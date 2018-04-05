@@ -155,3 +155,7 @@ file_length:
 
 nesting:
   type_level: 3
+
+identifier_name:
+  excluded:
+    - id
